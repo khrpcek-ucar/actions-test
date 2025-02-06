@@ -7,7 +7,7 @@ jobs:
     # You need to use the INSTALLATION_NAME from the previous step
     runs-on: gpu-runner
     container:
-      image: docker.io/nvidia/cuda:latest
+      image: cuda:latest
     steps:
     - run: echo "in nvidia container"
     - run: nvidia-smi
