@@ -1,0 +1,13 @@
+name: gpu actions
+on:
+  workflow_dispatch:
+
+jobs:
+  nvidia-pod:
+    # You need to use the INSTALLATION_NAME from the previous step
+    runs-on: gpu-runner
+    container:
+      image: nvidia/cuda:latest
+    steps:
+    - run: echo "in nvidia container"
+    - run: nvidia-smi
