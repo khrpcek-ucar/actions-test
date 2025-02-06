@@ -7,7 +7,7 @@ jobs:
     # You need to use the INSTALLATION_NAME from the previous step
     runs-on: gpu-runner
     container:
-      image: cuda:latest
+      image: nvidia/cuda:12.8.0-cudnn-runtime-rockylinux9
     steps:
     - run: echo "in nvidia container"
     - run: nvidia-smi
