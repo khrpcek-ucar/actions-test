@@ -15,5 +15,5 @@ jobs:
           token: ${{ secrets.chartsPAT }}
           repository: NCAR/cisl-cloud-charts
           event-type: test-event
-          client-payload: '{"ref": "{{ $github.ref }}", "sha": "${{ github.sha }}"}'
+          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}", "asdf": "jkl"}'
 
