@@ -16,6 +16,8 @@ jobs:
     - name: change and push
       run: |
         echo "asdf" >> README.md
+        git config user.email "khrpcek@ucar.edu"
+        git config user.name "Cirrusbot"
         git add README.md
         git commit -m "update file"
         git push
