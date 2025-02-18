@@ -1,0 +1,21 @@
+name: test git commit push
+
+on:
+  workflow_dispatch:
+
+jobs: 
+  build: 
+    runs-on: ubuntu-latest
+
+    steps: 
+    - name: checkout code
+      uses: actions/checkout@v2
+
+    - name: change and push
+      run: |
+        echo "asdf" >> README.md
+        git config user.email "khrpcek@ucar.edu"
+        git config user.name "Cirrusbot"
+        git add README.md
+        git commit -m "update file"
+        git push
