@@ -20,6 +20,6 @@ jobs:
               "repository": "${{ github.repository }}",
               "ref": "${{ github.ref }}",
               "sha": "${{ github.sha }}",
-              "argoApp": "kmh-actions-test"}'
+              "argoApp": "kmh-actions-test"
             }
 
