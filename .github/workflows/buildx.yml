@@ -16,7 +16,13 @@ jobs:
       with:
         platforms: linux/amd64
     - name: Build
-      uses: docker/build-push-action@v6
+      uses: redhat-actions/buildah-build@v2
       with:
-        push: false
-        file: containers/Dockerfile
+        image: demo
+        tags: ${{ github.sha }}
+        containerfiles: |
+          containers/Dockerfile
+#      uses: docker/build-push-action@v6
+#      with:
+#        push: false
+#        file: containers/Dockerfile
