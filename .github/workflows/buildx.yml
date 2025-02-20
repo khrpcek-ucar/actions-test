@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 jobs: 
   build: 
-    runs-on: ubuntu-latest
+    runs-on: gha-runner-actions-test
 
     steps: 
     - name: checkout code
