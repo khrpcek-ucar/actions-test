@@ -6,7 +6,7 @@ jobs:
   build: 
     runs-on: gha-runner-actions-test
     container:
-      image: ubuntu-latest
+      image: ubuntu:latest
     steps: 
     - name: checkout code
       uses: actions/checkout@v2
