@@ -34,7 +34,7 @@ jobs:
       uses: docker/build-push-action@v6
       with:
         push: true
-        tag: hub.k8s.ucar.edu/kmh-actions-test/kmh-actions-test:latest
+        tags: hub.k8s.ucar.edu/kmh-actions-test/kmh-actions-test:latest
         file: containers/Dockerfile
         cache-from: "type=registry,ref=hub.k8s.ucar.edu/kmh-actions-test/kmh-actions-test"
         cache-to: "type=registry,ref=hub.k8s.ucar.edu/kmh-actions-test/kmh-actions-test"
