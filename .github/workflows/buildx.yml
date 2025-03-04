@@ -29,5 +29,5 @@ jobs:
       with:
         push: false
         file: containers/Dockerfile
-        cache-from: "type=s3,endpoint_url=http://k101.k8s.ucar.edu,bucket=buildx,access_key_id=${{ secrets.buildx_access_key }},secret_access_key=${{ secrets.build_secret_key }}"
-        cache-to: "type=s3,endpoint_url=http://k101.k8s.ucar.edu,bucket=buildx,access_key_id=${{ secrets.buildx_access_key }},secret_access_key=${{ secrets.build_secret_key }}"
+        cache-from: "type=s3,endpoint_url=http://k101.k8s.ucar.edu,bucket=buildx,region=default,access_key_id=${{ secrets.buildx_access_key }},secret_access_key=${{ secrets.build_secret_key }}"
+        cache-to: "type=s3,endpoint_url=http://k101.k8s.ucar.edu,bucket=buildx,region=default,access_key_id=${{ secrets.buildx_access_key }},secret_access_key=${{ secrets.build_secret_key }}"
