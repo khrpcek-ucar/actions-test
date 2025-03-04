@@ -6,7 +6,7 @@ jobs:
   build: 
     runs-on: gha-runner-actions-test
     container:
-      image: rockylinux:9
+      image: docker:28-cli
     steps: 
     - name: checkout code
       uses: actions/checkout@v2
