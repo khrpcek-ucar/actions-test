@@ -37,6 +37,6 @@ jobs:
         tags: hub.k8s.ucar.edu/kmh-actions-test/kmh-actions-test:latest
         file: containers/Dockerfile
         cache-from: "type=registry,ref=hub.k8s.ucar.edu/kmh-actions-test/kmh-actions-test:cache"
-        cache-to: "type=registry,ref=hub.k8s.ucar.edu/kmh-actions-test/kmh-actions-test:cache,image-manifets=true,mode=max"
+        cache-to: "type=registry,ref=hub.k8s.ucar.edu/kmh-actions-test/kmh-actions-test:cache,image-manifest=true,mode=max"
         #cache-from: "type=s3,endpoint_url=http://k101.k8s.ucar.edu,bucket=buildx,region=default,access_key_id=${{ secrets.buildx_access_key }},secret_access_key=${{ secrets.buildx_secret_key }}"
         #cache-to: "type=s3,endpoint_url=http://k101.k8s.ucar.edu,bucket=buildx,region=default,access_key_id=${{ secrets.buildx_access_key }},secret_access_key=${{ secrets.buildx_secret_key }}"
