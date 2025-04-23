@@ -14,4 +14,6 @@ jobs:
     container:
       image: rockylinux:9
     steps:
-    - run: echo "running in the rocky container"
+    - run: |
+      echo "running in the rocky container"
+      ls -l /glade
