@@ -10,7 +10,7 @@ jobs:
     - run: echo "🎉 This job uses runner scale set runners!"
 
   test-starting-container:
-    runs-on: cirrus-ml-github-runners
+    runs-on: gha-runner-actions-test
     container:
       image: rockylinux:9
     steps:
