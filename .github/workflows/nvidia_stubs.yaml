@@ -20,9 +20,9 @@ jobs:
         echo $PATH
         echo $LD_LIBRARY_PATH
         env
-    - name: gpu info
-      run: |
-        [ -f "/usr/bin/nvidia-smi" ] && /usr/bin/nvidia-smi
+#    - name: gpu info
+#      run: |
+#        [ -f "/usr/bin/nvidia-smi" ] && /usr/bin/nvidia-smi
     - name: Interrogate Runtime Environment
       run: |
         pwd
