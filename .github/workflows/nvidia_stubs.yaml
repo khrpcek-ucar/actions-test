@@ -18,6 +18,7 @@ jobs:
       run: | 
         rm -f /container/cuda/12.9/targets/x86_64-linux/lib/stubs/libcuda.so.1
         ln -s /usr/lib64/libcuda.so.1 /container/cuda/12.9/targets/x86_64-linux/lib/stubs/libcuda.so.1
+        ls -l /container/cuda/12.9/targets/x86_64-linux/lib/stubs
     - name: env info
       run: |
         ls /dev
