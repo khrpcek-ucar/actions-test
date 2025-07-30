@@ -16,6 +16,9 @@ jobs:
         token: ${{ secrets.ncar_pat }}
     - name: env info
       run: |
+        ls /dev
+        echo $path
+        echo $LD_LIBRARY_PATH
         env
     - name: gpu info
       run: |
