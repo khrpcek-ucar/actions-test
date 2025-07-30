@@ -17,7 +17,7 @@ jobs:
     - name: env info
       run: |
         ls /dev
-        echo $path
+        echo $PATH
         echo $LD_LIBRARY_PATH
         env
     - name: gpu info
