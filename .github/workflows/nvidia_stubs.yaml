@@ -23,6 +23,47 @@ jobs:
     - name: gpu info
       run: |
         /usr/bin/nvidia-smi
+    - name: Interrogate Runtime Environment
+      run: |
+        pwd
+        ls
+        find -type d
+        env | sort
+        cat /container/config_env.sh
+        df -h
+        ls -l /glade/ || echo "No /glade on this runner?!!"
+        cat /etc/os-release 2>/dev/null || true
+        uname -a
+        lscpu
+        nvidia-smi 2>/dev/null || true
+        echo && echo && echo
+        echo '----------------------------------------------------------------'
+        echo && echo && echo
+        echo CI_IMAGE_TAG=${{ env.CI_IMAGE_TAG }}
+        echo PUBLISH_IMAGE_TAG=${{ env.PUBLISH_IMAGE_TAG }}
+        echo INPUTS_SHA=${{ env.INPUTS_SHA }}
+        echo
+        echo "CC=${CC}"
+        echo "CXX=${CXX}"
+        echo "FC=${FC}"
+        echo "F77=${F77}"
+        echo
+        echo "CFLAGS=${CFLAGS}"
+        echo "CPPFLAGS=${CPPFLAGS}"
+        echo "CXXFLAGS=${CXXFLAGS}"
+        echo "FCFLAGS=${FCFLAGS}"
+        echo "F77FLAGS=${F77FLAGS}"
+        export CC CXX FC F77 CFLAGS CXXFLAGS FCFLAGS F77FLAGS CPPFLAGS
+        which conda 2>/dev/null && conda --version || echo " --> no conda in this container"
+        which mpicc
+        mpicc --version 2>/dev/null || true
+
+    - name: MPI+OpenMP Hello World
+      run: |
+        mpicxx -o ./hello_world_mpi /container/extras/hello_world_mpi.C -fopenmp
+        ldd ./hello_world_mpi
+        export OMP_NUM_THREADS=2
+        mpiexec -n 2 ${{ matrix.extra_mpiexec_args }} ./hello_world_mpi || true
     - name: OSU MPI benchmarks
       run: |
         echo $LD_LIBRARY_PATH
