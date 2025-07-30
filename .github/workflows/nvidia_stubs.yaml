@@ -59,8 +59,7 @@ jobs:
         env
         which mpicc
         mpicc --version 2>/dev/null || true
-        export "PATH=$PATH" >> $GITHUB_ENV
-        export "LD_LIBRARY_PATH=$LIBRARY_PATH" >> $GITHUB_ENV
+        echo "{path}" >> $GITHUB_PATH
 
     - name: MPI+OpenMP Hello World
       run: |
