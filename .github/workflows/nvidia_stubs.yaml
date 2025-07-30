@@ -22,7 +22,7 @@ jobs:
         env
     - name: gpu info
       run: |
-        nvidia-smi
+        /usr/bin/nvidia-smi
     - name: OSU MPI benchmarks
       run: |
         echo $LD_LIBRARY_PATH
