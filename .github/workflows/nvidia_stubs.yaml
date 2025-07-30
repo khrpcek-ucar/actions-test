@@ -16,7 +16,7 @@ jobs:
         token: ${{ secrets.ncar_pat }}
     - name: remove /conainer/cuda
       run: | 
-        rm -rf /container/cuda
+        rm -f /container/cuda/12.9/targets/x86_64-linux/lib/stubs/libcuda.so.1
     - name: env info
       run: |
         ls /dev
