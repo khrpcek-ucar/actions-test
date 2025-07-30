@@ -1,0 +1,16 @@
+name: nvidia-stubs
+
+on:
+  workflow_dispatch:
+
+jobs:
+  hpcbenchmarksosu:
+    runs-on: gpu-runner
+    container: 
+      image: ncarcisl/cisldev-x86_64-almalinux9-aocc-mpich3-cuda:25.07
+    steps:
+    - name: checkout hpc benchmarks
+      uses: actions/checkout@master
+      with:
+        repository: NCAR/hpc-benchmarks
+        token: ${{ secrets.ncar_pat }}
