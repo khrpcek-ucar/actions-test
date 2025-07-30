@@ -72,4 +72,5 @@ jobs:
     - name: OSU MPI benchmarks
       run: |
         echo $LD_LIBRARY_PATH
+        env
         /container/extras/build_osu-micro-benchmarks.sh
