@@ -22,7 +22,7 @@ jobs:
         env
     - name: gpu info
       run: |
-        [ -f "/usr/bin/nvidia-smi"] && /usr/bin/nvidia-smi
+        [ -f "/usr/bin/nvidia-smi" ] && /usr/bin/nvidia-smi
     - name: Interrogate Runtime Environment
       run: |
         pwd
