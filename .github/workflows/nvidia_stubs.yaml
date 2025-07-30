@@ -14,3 +14,10 @@ jobs:
       with:
         repository: NCAR/hpc-benchmarks
         token: ${{ secrets.ncar_pat }}
+    - name: gpu info
+      run: |
+      nvidia-smi
+    - name: OSU MPI benchmarks
+      run: |
+      echo $LD_LIBRARY_PATH
+      /container/extras/build_osu-micro-benchmarks.sh
