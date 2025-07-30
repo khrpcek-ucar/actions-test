@@ -60,6 +60,7 @@ jobs:
         which mpicc
         mpicc --version 2>/dev/null || true
         echo "$PATH" >> $GITHUB_PATH
+        echo "LD_LIBRARY_PATH=/usr/lib:/usr/lib64:$LD_LIBRARY_PATH" >> $GITHUB_ENV
 
     - name: MPI+OpenMP Hello World
       run: |
