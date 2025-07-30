@@ -30,6 +30,7 @@ jobs:
         find -type d
         env | sort
         cat /container/config_env.sh
+        . /container/config_env.sh
         df -h
         ls -l /glade/ || echo "No /glade on this runner?!!"
         cat /etc/os-release 2>/dev/null || true
