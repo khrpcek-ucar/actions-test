@@ -9,7 +9,7 @@ jobs:
       image: docker:28-cli
     steps: 
     - name: checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       env:
         GITHUB_TOKEN: ${{ github.token }}
     - name: Set up Docker Buildx
