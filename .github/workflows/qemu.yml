@@ -32,6 +32,7 @@ jobs:
     - name: Build
       uses: docker/build-push-action@v6
       with:
+        platforms: linux/arm64
         push: true
         tags: hub.k8s.ucar.edu/khrpcek/kmh-actions-test:latest
         file: containers/Dockerfile
