@@ -18,7 +18,7 @@ jobs:
           client-payload: |- 
             {
               "repository": "${{ github.repository }}",
-              "ref": "${{ github.ref }}",
+              "ref": "${{ github.ref_name }}",
               "sha": "${{ github.sha }}",
               "argoApp": "kmh-actions-test"
             }
