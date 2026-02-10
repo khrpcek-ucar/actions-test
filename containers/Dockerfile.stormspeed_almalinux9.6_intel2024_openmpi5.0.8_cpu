@@ -27,7 +27,7 @@ RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2
     rm -rf awscliv2.zip aws && \
     aws --version
 
-# Clone Spack with tag v1.0.0
+# Clone Spack with tag v1.1.1
 RUN git clone --depth=2 --branch v1.1.1 https://github.com/spack/spack.git
 
 # Install Python 3.13.5 through Spack (needed for git-fleximod)
@@ -54,7 +54,7 @@ RUN . /opt/spack/share/spack/setup-env.sh && \
 FROM intel_compiler AS xml2_cmake
 
 RUN . /opt/spack/share/spack/setup-env.sh && \
-    spack install cmake@3.31.8 %gcc && \
+    spack install cmake@3.31.11 %gcc && \
     ln -s $(spack location -i cmake@3.31.8)/bin/cmake /usr/local/bin/cmake
     
 # Install xmllint that is required by CIME
