@@ -54,8 +54,8 @@ RUN . /opt/spack/share/spack/setup-env.sh && \
 FROM intel_compiler AS xml2_cmake
 
 RUN . /opt/spack/share/spack/setup-env.sh && \
-    spack install cmake@3.31.11 %gcc && \
-    ln -s $(spack location -i cmake@3.31.11)/bin/cmake /usr/local/bin/cmake
+    spack install cmake@3.31.9 %gcc && \
+    ln -s $(spack location -i cmake@3.31.9)/bin/cmake /usr/local/bin/cmake
     
 # Install xmllint that is required by CIME
 # Somehow libxml2 will be built by gcc anyway during other stage, so we just use gcc here to avoid confliction
