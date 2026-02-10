@@ -8,20 +8,21 @@ jobs:
     steps: 
     - name: checkout code
       uses: actions/checkout@v4
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
+
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
       with:
         platforms: linux/amd64
         driver: remote
         endpoint: tcp://buildkitd.arc-systems:1234
+
     - name: registry login
       uses: docker/login-action@v3
       with:
-        registry: hub.k8s.ucar.edu/kmh-actions-test
+        registry: hub.k8s.ucar.edu/khrpcek
         username: robot-gha
         password: ${{ secrets.hub_password }}
+
     - name: Build
       uses: docker/build-push-action@v6
       with:
