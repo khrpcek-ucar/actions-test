@@ -155,6 +155,11 @@ ENV MKLROOT="/usr/local/mkl"
 ENV PATH="/usr/local:/usr/local/bin:$MPI_ROOT/bin:${PATH}"
 ENV USER=robot
 
+##################
+# copy in stormspeed repo
+
+RUN git clone --depth 1 -b stormspeed https://github.com/NCAR/StormSPEED /stormspeed
+
 ##########################
 # Miscellaneous settings #
 ##########################
