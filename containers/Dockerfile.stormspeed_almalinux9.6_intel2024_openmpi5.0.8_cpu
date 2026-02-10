@@ -17,8 +17,10 @@ WORKDIR /opt
 RUN dnf -y update && \
     dnf -y groupinstall "Development Tools" && \
     dnf -y install bzip2 bzip2-devel xz xz-devel gmp-devel mpfr-devel libmpc-devel zlib-devel && \
-    dnf -y install python3 git make wget gzip perl unzip curl --allowerasing && \
+    dnf -y install python3 openssh-server openssh git make wget gzip perl unzip curl --allowerasing && \
     dnf -y install gcc-gfortran
+
+RUN echo "StrictModes no" >> /etc/ssh/sshd_config
 
 # Install AWS CLI v2 for AlmaLinux 9.6
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
@@ -159,7 +161,7 @@ ENV USER=robot
 # copy in stormspeed repo
 
 RUN git clone --depth 1 -b stormspeed https://github.com/NCAR/StormSPEED /stormspeed && cd /stormspeed && ./bin/git-fleximod -C /stormspeed update
-
+COPY stormspeed/setup.sh /tmp/
 ##########################
 # Miscellaneous settings #
 ##########################
