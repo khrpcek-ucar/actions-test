@@ -158,7 +158,7 @@ ENV USER=robot
 ##################
 # copy in stormspeed repo
 
-RUN ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts && git clone --recursive --depth 1 -b stormspeed https://github.com/NCAR/StormSPEED /stormspeed
+RUN mkdir ~/.ssh && chmod 600 ~/.ssh && ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts && git clone --recursive --depth 1 -b stormspeed https://github.com/NCAR/StormSPEED /stormspeed
 
 ##########################
 # Miscellaneous settings #
