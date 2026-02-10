@@ -1,4 +1,4 @@
-name: test buildx
+name: stormspeed build
 
 on:
   workflow_dispatch:
