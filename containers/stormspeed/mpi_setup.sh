@@ -8,7 +8,7 @@ cd /tmp/ci_test
 ./xmlchange CAM_TARGET='theta0-1'
 ./xmlchange STOP_OPTION=ndays,STOP_N=1,RESUBMIT=0
 ./xmlchange DOUT_S='FALSE'
-./xmlchange  MPI_RUN_COMMAND='mpiexec -n 20 -np "2" -bind-to none -map-by slot -x LD_LIBRARY_PATH -x PATH -mca pml ob1 --allow-run-as-root'
+./xmlchange  MPI_RUN_COMMAND='mpiexec -n 20 --hostfile /etc/mpi/hostfile -np "2" -bind-to none -map-by slot -x LD_LIBRARY_PATH -x PATH -mca pml ob1 --allow-run-as-root'
 #if [ "${{ matrix.runner }}" == "gha-runner-gpu-stormspeed" ]; then
 #   ./xmlchange GPU_TYPE=a10
 #   ./xmlchange KOKKOS_GPU_OFFLOAD=TRUE
