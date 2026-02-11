@@ -161,7 +161,7 @@ ENV USER=robot
 # copy in stormspeed repo
 
 RUN git clone --depth 1 -b stormspeed https://github.com/NCAR/StormSPEED /stormspeed && cd /stormspeed && ./bin/git-fleximod -C /stormspeed update
-COPY containers/stormspeed/setup.sh /tmp/
+COPY containers/stormspeed/*setup.sh /tmp/
 ##########################
 # Miscellaneous settings #
 ##########################
