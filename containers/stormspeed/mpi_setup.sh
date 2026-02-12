@@ -44,8 +44,8 @@ EOF
 ################
 # Run the test #
 ################
-. /opt/spack/share/spack/setup-env.sh
-spack load gcc prrte
+eval `/opt/spack/bin/spack load --sh gcc`
+eval `/opt/spack/bin/spack load --sh prrte`
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$PIO/lib:$NETCDF_FORTRAN_PATH/lib:$NETCDF_C_PATH/lib:$LAPACK/lib:$LAPACK/lib64:$PNETCDF/lib
 #if [ "${{ matrix.runner }}" == "gha-runner-gpu-stormspeed" ]; then
 #export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CUDA_ROOT/lib64:$CUDA_ROOT/lib64/stubs
