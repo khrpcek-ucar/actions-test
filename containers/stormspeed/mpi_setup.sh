@@ -1,9 +1,9 @@
 git config --global user.email "example_user@example.com"
 git config --global user.name "example_user"
 cd /stormspeed/cime/scripts
-./create_newcase --case /tmp/ci_test/1 --machine cirrus --compset FADIAB --res ne30_ne30_mg17 --compiler intel  --run-unsupported
+./create_newcase --case /tmp/ci_test/one --machine cirrus --compset FADIAB --res ne30_ne30_mg17 --compiler intel  --run-unsupported
 
-cd /tmp/ci_test/1
+cd /tmp/ci_test/one
 ./xmlchange NTASKS=20
 ./xmlchange CAM_TARGET='theta0-1'
 ./xmlchange STOP_OPTION=ndays,STOP_N=1,RESUBMIT=0
@@ -24,7 +24,7 @@ cd /tmp/ci_test/1
 ########################
 # Output daily average #
 ########################
-cd /tmp/ci_test/1
+cd /tmp/ci_test/one
 cat <<EOF > user_nl_cam
 se_statefreq = 488,
 mfilt=1,
