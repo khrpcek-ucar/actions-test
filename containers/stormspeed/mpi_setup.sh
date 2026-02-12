@@ -3,6 +3,10 @@ git config --global user.name "example_user"
 cd /stormspeed/cime/scripts
 ./create_newcase --case /tmp/ci_test/one --machine cirrus --compset FADIAB --res ne30_ne30_mg17 --compiler intel  --run-unsupported
 
+echo "StrictHostKeyChecking no" >> /etc/ssh/ssh_config
+echo "UserKnownHostsFile /dev/null" >> /etc/ssh/ssh_config
+
+
 cd /tmp/ci_test/one
 ./xmlchange NTASKS=20
 ./xmlchange CAM_TARGET='theta0-1'
