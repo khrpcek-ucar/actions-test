@@ -47,3 +47,4 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$PIO/lib:$NETCDF_FORTRAN_PATH/lib:$NETCD
 #else
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$MKLROOT/lib
 ./case.submit --no-batch 2>&1 | tee "$TMP_OUTPUT"
+sleep 120
