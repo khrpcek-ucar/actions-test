@@ -46,6 +46,8 @@ EOF
 ################
 eval `/opt/spack/bin/spack load --sh gcc`
 eval `/opt/spack/bin/spack load --sh prrte`
+eval `/opt/spack/bin/spack load --sh gcc`
+ln -s /opt/spack/opt/spack/linux-zen4/prrte-4.0.0-gqaxorzvrifh6n5n23374xadrjx44lea/bin/prted /usr/local/prted
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$PIO/lib:$NETCDF_FORTRAN_PATH/lib:$NETCDF_C_PATH/lib:$LAPACK/lib:$LAPACK/lib64:$PNETCDF/lib
 #if [ "${{ matrix.runner }}" == "gha-runner-gpu-stormspeed" ]; then
 #export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CUDA_ROOT/lib64:$CUDA_ROOT/lib64/stubs
