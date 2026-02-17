@@ -158,7 +158,7 @@ ENV LAPACK="/usr/local/lapack"
 ENV PIO_VERSION_MAJOR=2
 ENV PIO_TYPENAME_VALID_VALUES="netcdf, pnetcdf, netcdf4c, netcdf4p"
 ENV MKLROOT="/usr/local/mkl"
-ENV PATH="/usr/local:/usr/local/bin:$MPI_ROOT/bin:/usr/local/prte/bin:${PATH}"
+ENV PATH="/usr/local:/usr/local/bin:$MPI_ROOT/bin:/usr/local/prted/bin:${PATH}"
 ENV USER=robot
 
 ##################
