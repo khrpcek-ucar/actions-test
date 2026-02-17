@@ -52,6 +52,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$PIO/lib:$NETCDF_FORTRAN_PATH/lib:$NETCD
 #if [ "${{ matrix.runner }}" == "gha-runner-gpu-stormspeed" ]; then
 #export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CUDA_ROOT/lib64:$CUDA_ROOT/lib64/stubs
 #else
+export PATH=/usr/local/prted/bin:$PATH
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$MKLROOT/lib
 ./case.submit --no-batch 2>&1 | tee "$TMP_OUTPUT"
 sleep 120
