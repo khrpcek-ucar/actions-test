@@ -141,7 +141,7 @@ RUN . /opt/spack/share/spack/setup-env.sh && \
 RUN . /opt/spack/share/spack/setup-env.sh && \
     ln -s $(spack location -i prrte@4.0.0) /usr/local/prted
 
-RUN for d in /usr/local/*/bin; do export PATH=$PATH:$d; done
+RUN for d in /usr/local/*/bin; do export PATH=$PATH:$d; done; echo "PATH=$PATH" > /etc/environment
 ################################################
 # Set up environment variables for CI workflow #
 ################################################
