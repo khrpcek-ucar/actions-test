@@ -74,9 +74,9 @@ FROM xml2_cmake AS ucx_openmpi
 #    spack install ucx@1.18.1 %intel-oneapi-compilers@2024.2.1
 
 RUN . /opt/spack/share/spack/setup-env.sh && \
-    spack install openmpi@5.0.5 fabrics=tcp %intel-oneapi-compilers@2024.2.1 && \
+    spack install openmpi@5.0.8 %intel-oneapi-compilers@2024.2.1 && \
     #spack install openmpi@5.0.8 fabrics=cma,ucx %intel-oneapi-compilers@2024.2.1 ^ucx@1.18.1 && \
-    ln -s $(spack location -i openmpi@5.0.5) /usr/local/openmpi
+    ln -s $(spack location -i openmpi@5.0.8) /usr/local/openmpi
 
 #############
 # Build MKL #
