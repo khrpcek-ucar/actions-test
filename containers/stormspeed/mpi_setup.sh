@@ -1,7 +1,7 @@
 git config --global user.email "example_user@example.com"
 git config --global user.name "example_user"
 cd /stormspeed/cime/scripts
-./create_newcase --case /mpi/ci_test --machine cirrus --compset FADIAB --res ne30_ne30_mg17 --compiler intel  --run-unsupported --output-root /mpi
+./create_newcase --case /tmp/ci_test --machine cirrus --compset FADIAB --res ne30_ne30_mg17 --compiler intel  --run-unsupported --handle-preexisting-dirs r
 
 echo "StrictHostKeyChecking no" >> /etc/ssh/ssh_config
 echo "UserKnownHostsFile /dev/null" >> /etc/ssh/ssh_config
