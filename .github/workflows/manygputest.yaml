@@ -1,0 +1,75 @@
+name: many gpu test
+on:
+  workflow_dispatch:
+
+jobs:
+  nvidia-pod-1:
+    # You need to use the INSTALLATION_NAME from the previous step
+    runs-on: gha-runner-actions-test
+    container:
+      image: nvidia/cuda:12.8.0-cudnn-runtime-rockylinux9
+    steps:
+    - run: echo "in nvidia container"
+    - run: echo "sleeping 120s"
+    - run: sleep 120
+    - run: nvidia-smi
+  nvidia-pod-2:
+    # You need to use the INSTALLATION_NAME from the previous step
+    runs-on: gha-runner-actions-test
+    container:
+      image: nvidia/cuda:12.8.0-cudnn-runtime-rockylinux9
+    steps:
+    - run: echo "in nvidia container"
+    - run: echo "sleeping 120s"
+    - run: sleep 120
+    - run: nvidia-smi
+  nvidia-pod-3:
+    # You need to use the INSTALLATION_NAME from the previous step
+    runs-on: gha-runner-actions-test
+    container:
+      image: nvidia/cuda:12.8.0-cudnn-runtime-rockylinux9
+    steps:
+    - run: echo "in nvidia container"
+    - run: echo "sleeping 120s"
+    - run: sleep 120
+    - run: nvidia-smi
+  nvidia-pod-4:
+    # You need to use the INSTALLATION_NAME from the previous step
+    runs-on: gha-runner-actions-test
+    container:
+      image: nvidia/cuda:12.8.0-cudnn-runtime-rockylinux9
+    steps:
+    - run: echo "in nvidia container"
+    - run: echo "sleeping 120s"
+    - run: sleep 120
+    - run: nvidia-smi
+  nvidia-pod-5:
+    # You need to use the INSTALLATION_NAME from the previous step
+    runs-on: gha-runner-actions-test
+    container:
+      image: nvidia/cuda:12.8.0-cudnn-runtime-rockylinux9
+    steps:
+    - run: echo "in nvidia container"
+    - run: echo "sleeping 120s"
+    - run: sleep 120
+    - run: nvidia-smi
+  nvidia-pod-6:
+    # You need to use the INSTALLATION_NAME from the previous step
+    runs-on: gha-runner-actions-test
+    container:
+      image: nvidia/cuda:12.8.0-cudnn-runtime-rockylinux9
+    steps:
+    - run: echo "in nvidia container"
+    - run: echo "sleeping 120s"
+    - run: sleep 120
+    - run: nvidia-smi
+  nvidia-pod-7:
+    # You need to use the INSTALLATION_NAME from the previous step
+    runs-on: gha-runner-actions-test
+    container:
+      image: nvidia/cuda:12.8.0-cudnn-runtime-rockylinux9
+    steps:
+    - run: echo "in nvidia container"
+    - run: echo "sleeping 120s"
+    - run: sleep 120
+    - run: nvidia-smi
