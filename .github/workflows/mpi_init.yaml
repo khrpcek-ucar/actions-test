@@ -67,4 +67,5 @@ jobs:
       - name: Run MPI Init program
         run: |
           which mpirun
+          export OMPI_MCA_hwloc_use_cset=0
           mpirun -n 2 -x PMIX_MCA_hwloc_base_param_file_path="" ./mpi_init
