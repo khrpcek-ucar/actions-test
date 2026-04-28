@@ -20,9 +20,8 @@ jobs:
 
     # Runner instance OS
 
-    runs-on:
+    runs-on: gha-runner-actions-test
       #group: cirrus-4x8
-      group: gha-runner-actions-test
 
     # The 'ncarcisl' containers initialize their software environment 
     # through 'sourcing' a common configuration file (/container/config_env.sh). 
