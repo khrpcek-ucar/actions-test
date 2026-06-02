@@ -93,11 +93,12 @@ jobs:
         run: |
           while true; do
             status=$(kubectl get mpijob arc-mpijob -o jsonpath='{.status.conditions[?(@.type=="Succeeded")].status}')
+            failed=$(kubectl get mpijob arc-mpijob -o jsonpath='{.status.conditions[?(@.type=="Failed")].status}')
             if [[ "$status" == "True" ]]; then
               echo "MPIJob succeeded!"
               break
             fi
-            if [[ "$status" == "False" ]]; then
+            if [[ "$failed" == "True" ]]; then
               echo "MPIJob failed!"
               exit 1
             fi
