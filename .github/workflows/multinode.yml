@@ -6,6 +6,8 @@ on:
 jobs:
   multi-cpu:
     runs-on: gha-runner-actions-test
+    container:
+      image: docker.io/bitnami/kubectl:latest
     steps:
       - name: Submit mpijob
         run: |
