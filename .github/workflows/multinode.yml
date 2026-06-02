@@ -100,6 +100,7 @@ jobs:
             fi
             if [[ "$failed" == "True" ]]; then
               echo "MPIJob failed!"
+              kubectl delete mpijob arc-mpijob
               exit 1
             fi
             echo "Waiting for MPIJob to complete..."
@@ -107,7 +108,7 @@ jobs:
           done
       - name: Get logs from mpijob
         run: |
-          kubectl logs -l mpi-job-name=arc-mpijob -c mpi-launcher
+          kubectl logs -l training.kubeflow.org/job-name=arc-mpijob -c mpi-launcher
       - name: Clean up mpijob
         run: |
           kubectl delete mpijob arc-mpijob
