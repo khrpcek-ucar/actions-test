@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Submit mpijob
         run: |
-          kubectl apply << EOF
+          cat <<EOF | kubectl apply -f -
           apiVersion: kubeflow.org/v1
           kind: MPIJob
           metadata:
