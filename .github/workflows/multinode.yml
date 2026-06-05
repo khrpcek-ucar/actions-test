@@ -112,4 +112,159 @@ jobs:
       - name: Clean up mpijob
         run: |
           kubectl delete mpijob arc-mpijob
-            
+  multi-gpu:
+    runs-on: gha-runner-actions-test
+    container:
+      image: docker.io/bitnami/kubectl:latest
+    steps:
+      - name: Submit mpijob
+        run: |
+          cat <<EOF | kubectl apply -f -
+          apiVersion: kubeflow.org/v2beta1
+          kind: MPIJob
+          metadata:
+            name: arc-mpi-gpu-job
+          spec:
+            slotsPerWorker: 1
+            runPolicy:
+              cleanPodPolicy: Running  # Keeps pods running after job completion for inspection
+            sshAuthMountPath: /root/.ssh
+            mpiReplicaSpecs:
+              Launcher:
+                replicas: 1
+                template:
+                  spec:
+                    containers:
+                    - name: mpi-launcher
+                      image: hub.k8s.ucar.edu/khrpcek/nvda-pytorch:23.06
+                      imagePullPolicy: Always
+                      command: ["mpirun"]
+                      args:
+                        - "--allow-run-as-root"
+                        - "-np"
+                        - "$(PYTORCH_DDP_REPLICA_COUNT)"
+                        - -bind-to
+                        - none
+                        - -map-by
+                        - slot
+                        - -x
+                        - LD_LIBRARY_PATH
+                        - -x
+                        - PATH
+                        - -mca
+                        - pml
+                        - ob1
+                        - -mca
+                        - btl
+                        - ^openib
+                        - -mca
+                        - routed
+                        - direct
+                        - torchrun
+                        - "--nproc_per_node"
+                        - "1"
+                        - "--master_addr"
+                        - 0.0.0.0
+                        - "--master_port"
+                        - "29500"
+                        - "/app/torch_mnist.py"
+                      env:
+                        - name: PYTORCH_DDP_REPLICA_COUNT
+                          value: "2"
+                        - name: PYTORCH_DDP_MASTER_ADDR
+                          valueFrom:
+                            fieldRef:
+                              fieldPath: status.podIP
+                      ports:
+                      - name: torch
+                        containerPort: 29500
+                        protocol: TCP
+                      resources:
+                        limits:
+                          cpu: 1
+                          memory: 2Gi
+                      securityContext:
+                        privileged: true
+                      volumeMounts:
+                      - name: ssh-config
+                        mountPath: /etc/ssh/ssh_config
+                        subPath: ssh_config
+                        readOnly: true
+                    volumes:
+                    - name: ssh-config
+                      configMap:
+                        name: mpi-ssh-config
+                        items:
+                          - key: ssh
+                            path: ssh_config
+
+              # Worker: The pods that perform the actual calculation
+              Worker:
+                replicas: 2
+                template:
+                  spec:
+                    containers:
+                    - name: mpi-worker
+                      image: hub.k8s.ucar.edu/khrpcek/nvda-pytorch:23.06
+                      imagePullPolicy: Always
+                      command:
+                        - /usr/sbin/sshd
+                        - -De
+                        - -f
+                        - /root/.sshd_config
+                      # Request 1 GPU per worker replica
+                      resources:
+                        limits:
+                          nvidia.com/gpu: 8
+                          cpu: 5
+                          memory: 16Gi
+                      securityContext:
+                        privileged: true
+                    # Selector to ensure pods run on GPU nodes
+            #        nodeSelector:
+            #          nvidia.com/gpu: "true"
+                      volumeMounts:
+                      - name: sshd
+                        mountPath: /root/.sshd_config
+                        subPath: .sshd_config
+                        readOnly: true
+                      - name: ssh-config
+                        mountPath: /etc/ssh/ssh_config
+                        subPath: ssh_config
+                        readOnly: true
+                    volumes:
+                    - name: sshd
+                      configMap:
+                        name: sshd
+                        items:
+                          - key: sshd
+                            path: .sshd_config
+                    - name: ssh-config
+                      configMap:
+                        name: mpi-ssh-config
+                        items:
+                          - key: ssh
+                            path: ssh_config
+      - name: Wait for mpijob to complete
+        run: |
+          while true; do
+            status=$(kubectl get mpijob arc-mpi-gpu-job -o jsonpath='{.status.conditions[?(@.type=="Succeeded")].status}')
+            failed=$(kubectl get mpijob arc-mpi-gpu-job -o jsonpath='{.status.conditions[?(@.type=="Failed")].status}')
+            if [[ "$status" == "True" ]]; then
+              echo "MPIJob succeeded!"
+              break
+            fi
+            if [[ "$failed" == "True" ]]; then
+              echo "MPIJob failed!"
+              kubectl delete mpijob arc-mpijob
+              exit 1
+            fi
+            echo "Waiting for MPIJob to complete..."
+            sleep 10
+          done
+      - name: Get logs from mpijob
+        run: |
+          kubectl logs -l training.kubeflow.org/job-name=arc-mpi-gpu-job -c mpi-launcher
+      - name: Clean up mpijob
+        run: |
+          kubectl delete mpijob arc-mpi-gpu-job
