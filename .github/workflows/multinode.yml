@@ -108,7 +108,7 @@ jobs:
           done
       - name: Get logs from mpijob
         run: |
-          kubectl logs -l training.kubeflow.org/job-name=arc-mpijob -c mpi-launcher
+          kubectl logs -l training.kubeflow.org/job-name=arc-mpijob -c mpi-launcher --tail=-1
       - name: Clean up mpijob
         run: |
           kubectl delete mpijob arc-mpijob
@@ -264,7 +264,7 @@ jobs:
           done
       - name: Get logs from mpijob
         run: |
-          kubectl logs -l training.kubeflow.org/job-name=arc-mpi-gpu-job -c mpi-launcher
+          kubectl logs -l training.kubeflow.org/job-name=arc-mpi-gpu-job -c mpi-launcher --tail=-1
       - name: Clean up mpijob
         run: |
           kubectl delete mpijob arc-mpi-gpu-job
